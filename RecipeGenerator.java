@@ -38,7 +38,17 @@ public class RecipeGenerator {
             List<Recipe> possibleRecipes = findPossibleRecipes(availableIngredients, recipes);
 
             if (possibleRecipes.isEmpty()) {
-                System.out.println("No recipes found. Try different ingredients!");
+                List<Recipe> closeMatches = findCloseMatches(availableIngredients, recipes);
+                if (!closeMatches.isEmpty()) {
+                    System.out.println("\nYou don't have all the ingredients, but you can almost make:");
+                    for (Recipe recipe : closeMatches) {
+                        System.out.println("\n► " + recipe.name + " (" + recipe.cuisine + ", " + recipe.cookTime + " mins)");
+                        System.out.println("Missing Ingredients: " + getMissingIngredients(availableIngredients, recipe.ingredients));
+                        System.out.println("Instructions:\n" + recipe.instructions);
+                    }
+                } else {
+                    System.out.println("No recipes found. Try different ingredients!");
+                }
             } else {
                 System.out.println("\nYou can make:");
                 for (Recipe recipe : possibleRecipes) {
@@ -90,5 +100,23 @@ public class RecipeGenerator {
                 .filter(recipe -> availableIngredients.containsAll(recipe.ingredients))
                 .sorted(Comparator.comparingInt(r -> r.ingredients.size()))
                 .collect(Collectors.toList());
+    }
+
+    private static List<Recipe> findCloseMatches(List<String> availableIngredients, List<Recipe> allRecipes) {
+        return allRecipes.stream()
+                .filter(recipe -> {
+                    long missingCount = recipe.ingredients.stream()
+                            .filter(ingredient -> !availableIngredients.contains(ingredient))
+                            .count();
+                    return missingCount > 0 && missingCount <= 2; // Allow up to 2 missing ingredients
+                })
+                .sorted(Comparator.comparingInt(r -> r.ingredients.size()))
+                .collect(Collectors.toList());
+    }
+
+    private static String getMissingIngredients(List<String> availableIngredients, List<String> recipeIngredients) {
+        return recipeIngredients.stream()
+                .filter(ingredient -> !availableIngredients.contains(ingredient))
+                .collect(Collectors.joining(", "));
     }
 }
