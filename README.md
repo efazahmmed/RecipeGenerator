@@ -1,6 +1,6 @@
 # 🍲 RecipeGenerator
 
-`RecipeGenerator` is a Java-based console application that suggests recipes based on the ingredients you have. It connects to a MySQL database of recipes and helps users discover what meals they can prepare — even if they’re missing one or two ingredients!
+`RecipeGenerator` is a Java-based console application that suggests recipes based on the ingredients you have. It connects to a MySQL database of recipes and helps users discover what meals they can prepare, even if they’re missing one or two ingredients!
 
 ---
 
@@ -23,7 +23,8 @@
 
 ---
 
-##📘 How it Works
+## 📘 How it Works
+
 Class Structure
 RecipeGenerator: Main class that handles user input and recipe matching.
 
@@ -38,11 +39,14 @@ findCloseMatches(...): Suggests recipes that are only missing up to 2 ingredient
 
 getMissingIngredients(...): Lists what ingredients the user is missing for a near match.
 
-##✅ To-Do / Future Improvements
- Add a GUI using JavaFX or Swing
+---
 
- Implement fuzzy matching for ingredient names
+## ✅ To-Do / Future Improvements
 
- Add categories or tags (e.g., vegetarian, vegan, gluten-free)
+ - Add a GUI using JavaFX or Swing
 
- Save user preferences
+ - Implement fuzzy matching for ingredient names
+
+ - Add categories or tags (e.g., vegetarian, vegan, gluten-free)
+
+ - Save user preferences
