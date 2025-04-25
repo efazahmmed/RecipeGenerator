@@ -23,9 +23,7 @@
 
 ---
 
-## 📂 Project Structure
-
-📘 How it Works
+##📘 How it Works
 Class Structure
 RecipeGenerator: Main class that handles user input and recipe matching.
 
@@ -40,7 +38,7 @@ findCloseMatches(...): Suggests recipes that are only missing up to 2 ingredient
 
 getMissingIngredients(...): Lists what ingredients the user is missing for a near match.
 
-✅ To-Do / Future Improvements
+##✅ To-Do / Future Improvements
  Add a GUI using JavaFX or Swing
 
  Implement fuzzy matching for ingredient names
